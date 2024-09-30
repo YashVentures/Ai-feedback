@@ -1,22 +1,22 @@
 import mongoose ,{Schema , Document} from "mongoose";
 
 export interface Message extends Document {
-    content : string;
-    createdAT : Date
+    _id: string; 
+    content: string;
+    createdAt: Date; // Ensure this matches with the schema
 }
 
-const MessageSchema : Schema<Message> = new Schema({
-    content :{
-        type : String,
-        required : true
+const MessageSchema: Schema<Message> = new Schema({
+    content: {
+        type: String,
+        required: true
     },
-    createdAT :{
-        type:Date,
-        required:true ,
-        default : Date.now
+    createdAt: {
+        type: Date,
+        required: true,
+        default: Date.now // Ensure that 'Date.now' is correctly referenced
     }
-})
-
+});
 
 export interface User extends Document {
    username: string;
