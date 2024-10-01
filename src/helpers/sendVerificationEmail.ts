@@ -10,7 +10,7 @@ export async function sendVerificationEmail(
   try {
     const response = await resend.emails.send({
       from: 'noreply@bhadaurialand.site', // Use your verified domain email
-      to: email, // This can still be your Gmail for testing
+      to: email,
       subject: 'Verification Code',
       react: VerificationEmail({ username, otp: verifyCode }),
     });
