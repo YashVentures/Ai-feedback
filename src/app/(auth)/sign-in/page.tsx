@@ -94,12 +94,16 @@ export default function SignInForm() {
             <Button className='w-full' type="submit">Sign In</Button>
           </form>
         </Form>
-        <div className="text-center mt-4">
-          <p>
-            Not a member yet?{' '}
-            <Link href="/sign-up" className="text-blue-600 hover:text-blue-800">
-              Sign up
+        <div className="rounded-lg bg-gray-50 border border-gray-200 p-4 text-sm text-gray-600 space-y-1">
+          <p className="font-semibold text-gray-700">Test credentials</p>
+          <p>Username: <span className="font-mono font-medium text-gray-900">Testing</span></p>
+          <p>Password: <span className="font-mono font-medium text-gray-900">12345678</span></p>
+          <p className="pt-1 text-gray-500">
+            Or{' '}
+            <Link href="/sign-up" className="text-blue-600 hover:text-blue-800 font-medium">
+              sign up
             </Link>
+            {' '}to test the full flow.
           </p>
         </div>
       </div>

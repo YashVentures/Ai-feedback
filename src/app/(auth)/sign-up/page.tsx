@@ -105,30 +105,31 @@ export default function SignUpForm() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-800">
-      <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
+    <div className="flex justify-center items-center min-h-screen bg-gray-800 px-4 py-8">
+      <div className="w-full max-w-md p-6 sm:p-8 space-y-6 bg-white rounded-xl shadow-lg">
         <div className="text-center">
-          <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-3">
             Join True Feedback
           </h1>
-          <p className="mb-4">Sign up to start your anonymous adventure</p>
+          <p className="text-gray-500 text-sm sm:text-base">Sign up to start your anonymous adventure</p>
         </div>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
             <FormField
               name="username"
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Username</FormLabel>
+                  <FormLabel className="text-sm font-medium">Username</FormLabel>
                   <Input
                     {...field}
+                    className="h-11 text-base"
                     onChange={(e) => {
                       field.onChange(e);
-                      setUsername(e.target.value); // Trigger debounced check
+                      setUsername(e.target.value);
                     }}
                   />
-                  {isCheckingUsername && <Loader2 className="animate-spin" />}
+                  {isCheckingUsername && <Loader2 className="animate-spin h-4 w-4 text-gray-400" />}
                   {!isCheckingUsername && usernameMessage && (
                     <p
                       className={`text-sm ${
@@ -149,9 +150,9 @@ export default function SignUpForm() {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <Input {...field} name="email" />
-                  <p className='text-muted text-gray-400 text-sm'>We will send you a verification code</p>
+                  <FormLabel className="text-sm font-medium">Email</FormLabel>
+                  <Input {...field} name="email" className="h-11 text-base" />
+                  <p className="text-gray-600 text-sm">We will send you a verification code</p>
                   <FormMessage />
                 </FormItem>
               )}
@@ -162,13 +163,13 @@ export default function SignUpForm() {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
-                  <Input type="password" {...field} name="password" />
+                  <FormLabel className="text-sm font-medium">Password</FormLabel>
+                  <Input type="password" {...field} name="password" className="h-11 text-base" />
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button type="submit" className='w-full' disabled={isSubmitting}>
+            <Button type="submit" className="w-full h-11 text-base font-semibold" disabled={isSubmitting}>
               {isSubmitting ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -180,10 +181,10 @@ export default function SignUpForm() {
             </Button>
           </form>
         </Form>
-        <div className="text-center mt-4">
-          <p>
+        <div className="text-center">
+          <p className="text-sm text-gray-600">
             Already a member?{' '}
-            <Link href="/sign-in" className="text-blue-600 hover:text-blue-800">
+            <Link href="/sign-in" className="text-blue-600 hover:text-blue-800 font-medium">
               Sign in
             </Link>
           </p>

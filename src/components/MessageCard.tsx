@@ -52,12 +52,14 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
   return (
     <Card className="card-bordered">
       <CardHeader>
-        <div className="flex justify-between items-center">
-          <CardTitle>{message.content}</CardTitle>
+        <div className="flex justify-between items-start gap-3">
+          <CardTitle className="text-base font-medium leading-snug break-words min-w-0">
+            {message.content}
+          </CardTitle>
           <AlertDialog>
             <AlertDialogTrigger asChild>
-              <Button variant='destructive'>
-                <X className="w-5 h-5" />
+              <Button variant='destructive' size="icon" className="shrink-0 h-8 w-8">
+                <X className="w-4 h-4" />
               </Button>
             </AlertDialogTrigger>
             <AlertDialogContent>
