@@ -105,37 +105,42 @@ export default function SignUpForm() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-800 px-4 py-8">
-      <div className="w-full max-w-md p-6 sm:p-8 space-y-6 bg-white rounded-xl shadow-lg">
-        <div className="text-center">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-3">
+    <div className="flex justify-center items-center min-h-screen bg-[#e8ebe6] text-[#0e0f0c] px-4 py-8">
+      <div className="w-full max-w-md p-6 sm:p-8 space-y-6 bg-white rounded-[24px] border border-[#d5dad2] shadow-sm">
+        <div className="text-center space-y-2">
+          <Link href="/" className="inline-flex items-center space-x-2 text-2xl font-black text-[#0e0f0c] tracking-tight mb-2">
+            <span className="w-3.5 h-3.5 rounded-full bg-[#9fe870] inline-block" />
+            <span>True Feedback</span>
+          </Link>
+          <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-[#0e0f0c]">
             Join True Feedback
           </h1>
-          <p className="text-gray-500 text-sm sm:text-base">Sign up to start your anonymous adventure</p>
+          <p className="text-sm text-[#454745]">Create your account to start getting anonymous notes</p>
         </div>
+
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
               name="username"
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-sm font-medium">Username</FormLabel>
+                  <FormLabel className="text-xs font-bold text-[#0e0f0c]">Username</FormLabel>
                   <Input
                     {...field}
-                    className="h-11 text-base"
+                    className="h-11 rounded-xl border-[#d5dad2] focus:border-[#9fe870] text-base"
                     onChange={(e) => {
                       field.onChange(e);
                       setUsername(e.target.value);
                     }}
                   />
-                  {isCheckingUsername && <Loader2 className="animate-spin h-4 w-4 text-gray-400" />}
+                  {isCheckingUsername && <Loader2 className="animate-spin h-4 w-4 text-[#868685] mt-1" />}
                   {!isCheckingUsername && usernameMessage && (
                     <p
-                      className={`text-sm ${
+                      className={`text-xs font-semibold ${
                         usernameMessage === 'Username is unique'
-                          ? 'text-green-500'
-                          : 'text-red-500'
+                          ? 'text-[#2ead4b]'
+                          : 'text-[#d03238]'
                       }`}
                     >
                       {usernameMessage}
@@ -150,9 +155,9 @@ export default function SignUpForm() {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-sm font-medium">Email</FormLabel>
-                  <Input {...field} name="email" className="h-11 text-base" />
-                  <p className="text-gray-600 text-sm">We will send you a verification code</p>
+                  <FormLabel className="text-xs font-bold text-[#0e0f0c]">Email Address</FormLabel>
+                  <Input {...field} name="email" className="h-11 rounded-xl border-[#d5dad2] focus:border-[#9fe870] text-base" />
+                  <p className="text-xs text-[#868685]">We will send you an OTP verification code</p>
                   <FormMessage />
                 </FormItem>
               )}
@@ -163,28 +168,32 @@ export default function SignUpForm() {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-sm font-medium">Password</FormLabel>
-                  <Input type="password" {...field} name="password" className="h-11 text-base" />
+                  <FormLabel className="text-xs font-bold text-[#0e0f0c]">Password</FormLabel>
+                  <Input type="password" {...field} name="password" className="h-11 rounded-xl border-[#d5dad2] focus:border-[#9fe870] text-base" />
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button type="submit" className="w-full h-11 text-base font-semibold" disabled={isSubmitting}>
+            <Button
+              type="submit"
+              className="w-full h-11 bg-[#9fe870] text-[#0e0f0c] hover:bg-[#cdffad] font-semibold text-base rounded-full shadow-none transition-colors border-0 mt-2"
+              disabled={isSubmitting}
+            >
               {isSubmitting ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Please wait
+                  Creating Account...
                 </>
               ) : (
-                'Sign Up'
+                'Create Account'
               )}
             </Button>
           </form>
         </Form>
-        <div className="text-center">
-          <p className="text-sm text-gray-600">
-            Already a member?{' '}
-            <Link href="/sign-in" className="text-blue-600 hover:text-blue-800 font-medium">
+        <div className="text-center pt-2">
+          <p className="text-xs text-[#454745]">
+            Already have an account?{' '}
+            <Link href="/sign-in" className="font-bold text-[#0e0f0c] hover:underline">
               Sign in
             </Link>
           </p>

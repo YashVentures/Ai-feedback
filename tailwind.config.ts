@@ -49,12 +49,31 @@ const config: Config = {
   				'3': 'hsl(var(--chart-3))',
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
+  			},
+  			wise: {
+  				primary: '#9fe870',
+  				'on-primary': '#0e0f0c',
+  				'primary-active': '#cdffad',
+  				'primary-pale': '#e2f6d5',
+  				ink: '#0e0f0c',
+  				'ink-deep': '#163300',
+  				body: '#454745',
+  				mute: '#868685',
+  				canvas: '#ffffff',
+  				'canvas-soft': '#e8ebe6',
+  				positive: '#2ead4b',
+  				'positive-deep': '#054d28',
+  				warning: '#ffd11a',
+  				negative: '#d03238',
+  				'negative-deep': '#a72027',
+  				'negative-bg': '#320707',
   			}
   		},
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
-  			sm: 'calc(var(--radius) - 4px)'
+  			sm: 'calc(var(--radius) - 4px)',
+  			wise: '24px',
   		}
   	}
   },

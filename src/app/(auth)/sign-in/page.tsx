@@ -59,23 +59,28 @@ export default function SignInForm() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-800">
-      <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
-        <div className="text-center">
-          <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">
-            Welcome Back to True Feedback
+    <div className="flex justify-center items-center min-h-screen bg-[#e8ebe6] text-[#0e0f0c] px-4 py-8">
+      <div className="w-full max-w-md p-6 sm:p-8 space-y-6 bg-white rounded-[24px] border border-[#d5dad2] shadow-sm">
+        <div className="text-center space-y-2">
+          <Link href="/" className="inline-flex items-center space-x-2 text-2xl font-black text-[#0e0f0c] tracking-tight mb-2">
+            <span className="w-3.5 h-3.5 rounded-full bg-[#9fe870] inline-block" />
+            <span>True Feedback</span>
+          </Link>
+          <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-[#0e0f0c]">
+            Welcome Back
           </h1>
-          <p className="mb-4">Sign in to continue your secret conversations</p>
+          <p className="text-sm text-[#454745]">Sign in to continue managing your secret feedback board</p>
         </div>
+
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
               name="identifier"
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email/Username</FormLabel>
-                  <Input {...field} />
+                  <FormLabel className="text-xs font-bold text-[#0e0f0c]">Email or Username</FormLabel>
+                  <Input {...field} className="h-11 rounded-xl border-[#d5dad2] focus:border-[#9fe870] text-base" />
                   <FormMessage />
                 </FormItem>
               )}
@@ -85,25 +90,27 @@ export default function SignInForm() {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
-                  <Input type="password" {...field} />
+                  <FormLabel className="text-xs font-bold text-[#0e0f0c]">Password</FormLabel>
+                  <Input type="password" {...field} className="h-11 rounded-xl border-[#d5dad2] focus:border-[#9fe870] text-base" />
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button className='w-full' type="submit">Sign In</Button>
+            <Button className="w-full h-11 bg-[#9fe870] text-[#0e0f0c] hover:bg-[#cdffad] font-semibold text-base rounded-full shadow-none transition-colors border-0 mt-2" type="submit">
+              Sign In
+            </Button>
           </form>
         </Form>
-        <div className="rounded-lg bg-gray-50 border border-gray-200 p-4 text-sm text-gray-600 space-y-1">
-          <p className="font-semibold text-gray-700">Test credentials</p>
-          <p>Username: <span className="font-mono font-medium text-gray-900">Testing</span></p>
-          <p>Password: <span className="font-mono font-medium text-gray-900">12345678</span></p>
-          <p className="pt-1 text-gray-500">
-            Or{' '}
-            <Link href="/sign-up" className="text-blue-600 hover:text-blue-800 font-medium">
-              sign up
+
+        <div className="rounded-[16px] bg-[#e2f6d5] border border-[#c5edab] p-4 text-xs text-[#054d28] space-y-1">
+          <p className="font-bold text-[#054d28] text-sm">Test Credentials</p>
+          <p>Username: <span className="font-mono font-bold">Testing</span></p>
+          <p>Password: <span className="font-mono font-bold">12345678</span></p>
+          <p className="pt-2 text-[#054d28]">
+            Need an account?{' '}
+            <Link href="/sign-up" className="font-bold underline hover:text-[#0e0f0c]">
+              Sign up free
             </Link>
-            {' '}to test the full flow.
           </p>
         </div>
       </div>

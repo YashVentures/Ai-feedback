@@ -134,65 +134,93 @@ function UserDashboard() {
   };
 
   return (
-    <div className="my-4 sm:my-8 mx-auto px-4 sm:px-6 py-6 bg-white rounded w-full max-w-6xl">
-      <h1 className="text-2xl sm:text-4xl font-bold mb-6">User Dashboard</h1>
+    <div className="my-6 sm:my-10 mx-auto px-4 sm:px-6 py-6 w-full max-w-5xl space-y-8">
+      <div className="space-y-2">
+        <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-[#0e0f0c]">
+          User Dashboard
+        </h1>
+        <p className="text-base text-[#454745]">Manage your anonymous feedback link and received messages.</p>
+      </div>
 
-      <div className="mb-6">
-        <h2 className="text-lg font-semibold mb-2">Copy Your Unique Link</h2>
-        <div className="flex flex-col sm:flex-row gap-2">
+      {/* Share Profile Link Card */}
+      <div className="bg-white p-6 sm:p-8 rounded-[24px] border border-[#d5dad2] shadow-sm space-y-4">
+        <div>
+          <h2 className="text-xl font-bold text-[#0e0f0c]">Your Shareable Profile Link</h2>
+          <p className="text-sm text-[#868685]">Share this link with anyone to receive anonymous feedback.</p>
+        </div>
+        <div className="flex flex-col sm:flex-row gap-3">
           <input
             type="text"
             value={profileUrl}
             disabled
-            className="input input-bordered w-full p-2 border rounded text-sm truncate"
+            className="w-full bg-[#e8ebe6] text-[#0e0f0c] border border-[#d5dad2] rounded-xl px-4 py-3 text-sm font-mono focus:outline-none select-all truncate"
           />
-          <Button onClick={copyToClipboard} className="sm:shrink-0">Copy</Button>
+          <Button
+            onClick={copyToClipboard}
+            className="sm:shrink-0 bg-[#9fe870] text-[#0e0f0c] hover:bg-[#cdffad] rounded-full font-semibold px-6 py-3 border-0 shadow-none transition-colors"
+          >
+            Copy Link
+          </Button>
         </div>
       </div>
 
-      <div className="mb-6 flex items-center gap-3">
-        <Switch
-          {...register('acceptMessages')}
-          checked={acceptMessages}
-          onCheckedChange={handleSwitchChange}
-          disabled={isSwitchLoading}
-        />
-        <span className="text-sm font-medium">
-          Accept Messages: {acceptMessages ? 'On' : 'Off'}
-        </span>
-      </div>
-      <Separator />
+      {/* Settings Bar */}
+      <div className="bg-white p-6 rounded-[24px] border border-[#d5dad2] shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="flex items-center gap-3">
+          <Switch
+            {...register('acceptMessages')}
+            checked={acceptMessages}
+            onCheckedChange={handleSwitchChange}
+            disabled={isSwitchLoading}
+          />
+          <span className="text-sm font-semibold text-[#0e0f0c]">
+            Accept Messages: <strong className={acceptMessages ? 'text-[#2ead4b]' : 'text-[#d03238]'}>{acceptMessages ? 'Active' : 'Paused'}</strong>
+          </span>
+        </div>
 
-      <div className="mt-4 flex items-center justify-between">
-        <span className="text-sm text-gray-500">{messages.length} message{messages.length !== 1 ? 's' : ''}</span>
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={(e) => {
-            e.preventDefault();
-            fetchMessages(true);
-          }}
-        >
-          {isLoading ? (
-            <Loader2 className="h-4 w-4 animate-spin" />
-          ) : (
-            <RefreshCcw className="h-4 w-4" />
-          )}
-          <span className="ml-2">Refresh</span>
-        </Button>
+        <div className="flex items-center justify-between sm:justify-end gap-4">
+          <span className="text-sm font-medium text-[#868685]">
+            {messages.length} message{messages.length !== 1 ? 's' : ''}
+          </span>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={(e) => {
+              e.preventDefault();
+              fetchMessages(true);
+            }}
+            className="bg-[#e8ebe6] text-[#0e0f0c] hover:bg-[#d5dad2] rounded-full font-semibold px-4 py-2 text-xs transition-colors border-0 shadow-none"
+          >
+            {isLoading ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              <RefreshCcw className="h-4 w-4" />
+            )}
+            <span className="ml-2">Refresh</span>
+          </Button>
+        </div>
       </div>
 
-      <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+      {/* Messages Grid */}
+      <div className="space-y-4">
+        <h2 className="text-xl font-bold text-[#0e0f0c]">Inbox</h2>
         {messages.length > 0 ? (
-          messages.map((message) => (
-            <MessageCard
-              key={message._id}
-              message={message}
-              onMessageDelete={handleDeleteMessage}
-            />
-          ))
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {messages.map((message) => (
+              <MessageCard
+                key={message._id}
+                message={message}
+                onMessageDelete={handleDeleteMessage}
+              />
+            ))}
+          </div>
         ) : (
-          <p className="text-gray-500 text-sm col-span-full mt-4">No messages to display.</p>
+          <div className="bg-white p-12 rounded-[24px] border border-[#d5dad2] text-center space-y-3 shadow-sm">
+            <p className="text-lg font-semibold text-[#0e0f0c]">No messages yet!</p>
+            <p className="text-sm text-[#868685] max-w-sm mx-auto">
+              Share your link on social media or with friends to start getting anonymous notes.
+            </p>
+          </div>
         )}
       </div>
     </div>

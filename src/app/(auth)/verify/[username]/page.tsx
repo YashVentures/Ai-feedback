@@ -52,28 +52,39 @@ export default function VerifyAccount() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
-        <div className="text-center">
-          <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">
+    <div className="flex justify-center items-center min-h-screen bg-[#e8ebe6] text-[#0e0f0c] px-4 py-8">
+      <div className="w-full max-w-md p-6 sm:p-8 space-y-6 bg-white rounded-[24px] border border-[#d5dad2] shadow-sm">
+        <div className="text-center space-y-2">
+          <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-[#0e0f0c]">
             Verify Your Account
           </h1>
-          <p className="mb-4">Enter the verification code sent to your email</p>
+          <p className="text-sm text-[#454745]">
+            Enter the 6-digit code sent to your email address for <span className="font-bold text-[#0e0f0c]">@{params.username}</span>
+          </p>
         </div>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
               name="code"
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Verification Code</FormLabel>
-                  <Input {...field} />
+                  <FormLabel className="text-xs font-bold text-[#0e0f0c]">Verification Code</FormLabel>
+                  <Input
+                    {...field}
+                    placeholder="123456"
+                    className="h-12 rounded-xl border-[#d5dad2] focus:border-[#9fe870] text-center text-xl font-mono tracking-widest text-[#0e0f0c]"
+                  />
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button type="submit">Verify</Button>
+            <Button
+              type="submit"
+              className="w-full h-11 bg-[#9fe870] text-[#0e0f0c] hover:bg-[#cdffad] font-semibold text-base rounded-full shadow-none transition-colors border-0 mt-2"
+            >
+              Verify Code
+            </Button>
           </form>
         </Form>
       </div>
