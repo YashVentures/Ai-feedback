@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import AuthProvider from '../context/AuthProvider';
 import { Toaster } from '@/components/ui/toaster';
+import Script from 'next/script';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -22,6 +23,12 @@ export default async function RootLayout({ children }: RootLayoutProps) {
         <body className={inter.className}>
           {children}
           <Toaster />
+          <Script
+            src="https://realcoins-lnw3l42uj-yashventures-projects.vercel.app/widget.js"
+            data-site-id="site_NH4wrZgDkji3tMRFJcIhf1tKVRKm34DB"
+            data-api-base="https://staging.realquiz.net/api/v1/realcoins"
+            strategy="afterInteractive"
+          />
         </body>
       </AuthProvider>
     </html>
